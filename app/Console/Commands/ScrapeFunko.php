@@ -13,7 +13,7 @@ class ScrapeFunko extends Command
      *
      * @var string
      */
-    protected $signature = 'scrape:funko';
+    protected $signature = 'scrape:bankingdata';
 
     /**
      * The console command description.
@@ -84,8 +84,8 @@ class ScrapeFunko extends Command
                 //$sku   = explode('#', $node->filter('.product-sku')->text())[1];
                 //$title = trim($node->filter('.title a')->text());
 				//dd($node->filter('div.column-block'));
-                $arb = $node->filter('div.column-block')->html();
-				print_r($arb);
+                $arb = $node->filter('div.column-block a')->extract(array('href'));
+				print_r(array_unique($arb));
             });
     }
 }
